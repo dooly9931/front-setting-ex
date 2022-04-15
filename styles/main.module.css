@@ -1,0 +1,17 @@
+#main-page {
+  padding: 50px;
+}
+
+#wallet-connect {
+  width: 200px;
+  height: 50px;
+  background-color: white;
+  border: 1px solid #ff5f19;
+  border-radius: 10px;
+  box-shadow: 5px;
+  margin: 20px;
+}
+
+#wallet-connect:hover {
+  cursor: pointer;
+}

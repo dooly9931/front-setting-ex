@@ -11,6 +11,34 @@ a {
   text-decoration: none;
 }
 
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard-dynamic-subset.css");
+
 * {
   box-sizing: border-box;
+  font-family: Pretendard;
+  font-style: normal;
+}
+
+.title-25 {
+  font-weight: bold;
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.subtitle-16 {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.primary-orange {
+  color: #ff5f19;
+}
+
+.black {
+  color: black;
+}
+
+.gray {
+  color: #999999;
 }
