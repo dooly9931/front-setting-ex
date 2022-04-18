@@ -11,6 +11,8 @@ const cx = classNames.bind(styles);
 
 const axios = require("axios");
 
+const web3 = require("web3");
+
 // type Context = {
 //   params: {
 //     word: string;
@@ -28,12 +30,14 @@ const axios = require("axios");
 //   data: string;
 // };
 
-// const fetcher = async (...args: string[]) => {
-//   const res = await axios.get(...args);
-//   const data = (await res.data) as string;
+const fetcher = async (...args: string[]) => {
+  const res = await axios.get(...args);
+  const longString = (await res.data) as string;
 
-//   return data;
-// };
+  const randomHex = web3.utils.randomHex(32);
+
+  return { longString, randomHex };
+};
 
 const MainWord: NextPage = () => {
   const router = useRouter();
@@ -44,12 +48,12 @@ const MainWord: NextPage = () => {
   }, [word]);
 
   // console.log(word);
-  // const { data, error } = useSWR(
-  //   word ? `http://localhost:8000/api/${word}/` : null,
-  //   fetcher
-  // );
+  const { data, error } = useSWR(
+    word ? `http://localhost:8000/api/${word}/` : null,
+    fetcher
+  );
 
-  // if (error) return <div>Failed to load</div>;
+  if (error) return <div>Failed to load</div>;
 
   return (
     <div id={styles["main-page"]}>
@@ -66,7 +70,10 @@ const MainWord: NextPage = () => {
         <div className={classNames("subtitle-16")}>Web3 random number: </div>
         <div className={classNames("subtitle-16")}>URL argument: "{word}"</div>
         <div className={classNames("subtitle-16")}>
-          URL argument - backend response: ""
+          URL argument - backend response: "{data?.longString}"
+        </div>
+        <div className={classNames("subtitle-16")}>
+          Web3 Random Hex: {data?.randomHex}
         </div>
       </div>
     </div>
