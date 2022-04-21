@@ -1,10 +1,24 @@
 import type { NextPage } from "next";
-import styles from "../../styles/main.module.css";
+import styles from "../../../styles/main.module.css";
 import classNames from "classnames";
+
+import web3 from "web3";
 
 const cx = classNames.bind(styles);
 
-const Main: NextPage = () => {
+export async function getStaticProps() {
+  return {
+    props: {
+      randomHex: web3.utils.randomHex(32),
+    },
+  };
+}
+
+type StaticProps = {
+  randomHex: string;
+};
+
+const Main: NextPage<StaticProps> = ({ randomHex }) => {
   return (
     <div id={styles["main-page"]}>
       <div>
@@ -18,6 +32,7 @@ const Main: NextPage = () => {
         <div className={classNames("subtitle-16")}>Web3 random number: </div>
         <div className={classNames("subtitle-16")}>URL argument: &quot;&quot;</div>
         <div className={classNames("subtitle-16")}>URL argument - backend response: &quot;&quot;</div>
+        <div className={classNames("subtitle-16")}>Web3 Random Hex: {randomHex}</div>
       </div>
     </div>
   );

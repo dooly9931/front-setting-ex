@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Home from "../pages/index";
+import Home from "./index";
 import Router from "next/router";
 
 describe("Home", () => {

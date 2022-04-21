@@ -1,11 +1,12 @@
 import type { NextPage } from "next";
-import styles from "../../styles/main.module.css";
+import styles from "../../../styles/main.module.css";
 import classNames from "classnames";
 
 import { useRouter } from "next/router";
 
 import useSWR from "swr";
-import { useEffect } from "react";
+import { API_URL } from "../../constants";
+import { useState, useEffect } from "react";
 
 const cx = classNames.bind(styles);
 
@@ -13,42 +14,35 @@ import axios from "axios";
 
 import web3 from "web3";
 
-// type Context = {
-//   params: {
-//     word: string;
-//   };
-// };
-
-// export async function func(word: string) {
-//   const res = await axios.get(`http://localhost:8000/api/${word}/`);
-//   const data = (await res.data) as string;
-
-//   return data;
-// }
-
-// type Props = {
-//   data: string;
-// };
+export async function getStaticProps() {
+  return {
+    props: {
+      randomHex: web3.utils.randomHex(32),
+    },
+  };
+}
 
 const fetcher = async (...args: string[]) => {
   const res = await axios.get(args[0]);
   const longString = (await res.data) as string;
 
-  const randomHex = web3.utils.randomHex(32);
-
-  return { longString, randomHex };
+  return { longString };
 };
 
-const MainWord: NextPage = () => {
+type StaticProps = {
+  randomHex: string;
+};
+
+const MainWord: NextPage<StaticProps> = ({ randomHex }) => {
   const router = useRouter();
   const { word } = router.query;
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    console.log(`word: ${word}`);
-  }, [word]);
+    setMounted(true);
+  }, []);
 
-  // console.log(word);
-  const { data, error } = useSWR(word ? `http://localhost:8000/api/${word}/` : null, fetcher);
+  const { data, error } = useSWR(word && !mounted ? `${API_URL}/api/main?word=${word}` : null, fetcher);
 
   if (error) return <div>Failed to load</div>;
 
@@ -65,7 +59,7 @@ const MainWord: NextPage = () => {
         <div className={classNames("subtitle-16")}>Web3 random number: </div>
         <div className={classNames("subtitle-16")}>URL argument: &quot;{word}&quot;</div>
         <div className={classNames("subtitle-16")}>URL argument - backend response: &quot;{data?.longString}&quot;</div>
-        <div className={classNames("subtitle-16")}>Web3 Random Hex: {data?.randomHex}</div>
+        <div className={classNames("subtitle-16")}>Web3 Random Hex: {randomHex}</div>
       </div>
     </div>
   );
