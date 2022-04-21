@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import styles from "../../../styles/main.module.css";
+import styles from "../../../styles/main.module.scss";
 import classNames from "classnames";
 
 import web3 from "web3";

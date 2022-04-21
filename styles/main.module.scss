@@ -1,0 +1,20 @@
+@import "./colors.module.scss";
+
+#main-page {
+  padding: 50px;
+}
+
+#wallet-connect {
+  & {
+    width: 200px;
+    height: 50px;
+    background-color: $wh;
+    border: 1px solid $po;
+    border-radius: 10px;
+    box-shadow: 5px;
+    margin: 20px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+}
