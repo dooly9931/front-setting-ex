@@ -9,16 +9,16 @@ const cx = classNames.bind(styles);
 export async function getStaticProps() {
   return {
     props: {
-      randomHex: web3.utils.randomHex(32),
+      staticString: "hi, there!",
     },
   };
 }
 
 type StaticProps = {
-  randomHex: string;
+  staticString: string;
 };
 
-const Main: NextPage<StaticProps> = ({ randomHex }) => {
+const Main: NextPage<StaticProps> = ({ staticString }) => {
   return (
     <div id={styles["main-page"]}>
       <div>
@@ -29,10 +29,9 @@ const Main: NextPage<StaticProps> = ({ randomHex }) => {
         </button>
       </div>
       <div>
-        <div className={classNames("subtitle-16")}>Web3 random number: </div>
-        <div className={classNames("subtitle-16")}>URL argument: &quot;&quot;</div>
-        <div className={classNames("subtitle-16")}>URL argument - backend response: &quot;&quot;</div>
-        <div className={classNames("subtitle-16")}>Web3 Random Hex: {randomHex}</div>
+        <div id="static-string" className={classNames("subtitle-16")}>
+          Static Page text: &quot;{staticString}&quot;
+        </div>
       </div>
     </div>
   );

@@ -1,0 +1,59 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Main should handle home page click 1`] = `
+<div
+  id="main-page"
+>
+  <div>
+    <div
+      className="title-25 primary-orange"
+    >
+      Main page
+    </div>
+    <div
+      className="subtitle-16 black"
+    >
+      Page Introduction: this is ted's main page
+    </div>
+    <button
+      id="wallet-connect"
+      type="button"
+    >
+      Connect Wallet
+    </button>
+  </div>
+  <div>
+    <div
+      className="subtitle-16"
+    >
+      Web3 random number: 
+    </div>
+    <div
+      className="subtitle-16"
+    >
+      URL argument: "
+      test2
+      "
+    </div>
+    <div
+      className="subtitle-16"
+    >
+      URL argument - backend response: "
+      test2test2test2
+      "
+    </div>
+    <div
+      className="subtitle-16"
+    >
+      Web3 Random Hex: 
+      0x0000
+    </div>
+    <button
+      onClick={[Function]}
+      type="button"
+    >
+      home page
+    </button>
+  </div>
+</div>
+`;
